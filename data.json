@@ -1,0 +1,40 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Мясо",
+      "description": ""
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Овощи",
+      "description": ""
+    }
+  },
+  {
+    "model": "catalog.product",
+    "fields": {
+      "product_name": "Курица",
+      "preview_img": "",
+      "category": 1,
+      "price": 350,
+      "creation_date": "2023-07-11",
+      "last_change_date": "2023-07-11"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "fields": {
+      "product_name": "Огурец",
+      "preview_img": "",
+      "category": 2,
+      "price": 350,
+      "creation_date": "2023-07-11",
+      "last_change_date": "2023-07-11"
+    }
+  }
+]
