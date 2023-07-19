@@ -1,4 +1,5 @@
 {% extends 'catalog/base.html' %}
+{% load my_tags %}
 {% block content %}
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h1 class="display-4">Skystore</h1>
@@ -10,17 +11,18 @@
     {% for object in object_list %}
     <div class="col-3">
         <div class="card mb-4 box-shadow">
+            <img class="card-img-top"
+                 src="{{ object.preview_img|mymedia }}"
+                 alt="Card image cap">
             <div class="card-header">
                 <h4 class="my-0 font-weight-normal">{{object.product_name}}</h4>
             </div>
             <div class="card-body">
                 <h1 class="card-title pricing-card-title">$ {{object.price}}</h1>
-<!--                <ul class="list-unstyled mt-3 mb-4 text-start m-3">-->
-<!--                    <li>- Неограниченная лицензия</li>-->
-<!--                    <li>- Поддержка</li>-->
-<!--                    <li>- Установка на сервер</li>-->
-<!--                    <li>- Получение обновлений</li>-->
-<!--                </ul>-->
+                <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                    <li>- Категория: {{object.category}}</li>
+                    <li>- Дата изготовления: {{object.creation_date}}</li>
+                </ul>
                 <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
             </div>
         </div>
@@ -28,3 +30,6 @@
     {% endfor %}
 </div>
 {% endblock %}
+
+
+
