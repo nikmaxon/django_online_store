@@ -13,6 +13,9 @@ class Command(BaseCommand):
         category_list = [
             {'name': 'Мясо', 'description': ''},
             {'name': 'Овощи', 'description': ''},
+            {'name': 'Вода', 'description': ''},
+            {'name': 'Алкоголь', 'description': ''},
+            {'name': 'Сладости', 'description': ''},
         ]
 
         category_for_create = []
@@ -25,6 +28,9 @@ class Command(BaseCommand):
         product_list = [
             {'product_name': 'Курица', 'price': '350'},
             {'product_name': 'Огурец', 'price': '350'},
+            {'product_name': 'Вода', 'price': '350'},
+            {'product_name': 'Пиво', 'price': '350'},
+            {'product_name': 'Мармелад', 'price': '350'},
         ]
         products_for_create = []
 
