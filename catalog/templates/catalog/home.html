@@ -23,7 +23,7 @@
                     <li>- Категория: {{object.category}}</li>
                     <li>- Дата изготовления: {{object.creation_date}}</li>
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
+                <a href="{% url 'catalog:product_card' object.pk %}" type="button" class="btn btn-lg btn-block btn-outline-primary">Подробнее</a>
             </div>
         </div>
     </div>
