@@ -1,12 +1,10 @@
 from django.urls import path
 from catalog.apps import CatalogConfig
-from catalog.views import home, contacts, product_card
-
+from catalog.views import contacts, ProductListView, ProductDetailView
 app_name = CatalogConfig.name
 
 urlpatterns = [
-    path('', home, name='home'),
+    path('', ProductListView.as_view(), name='home'),
     path('contacts/', contacts, name='contacts'),
-    path('<int:pk>/card/', product_card, name='product_card'),
-
+    path('cards/<int:pk>/', ProductDetailView.as_view(), name='product_card'),
 ]
