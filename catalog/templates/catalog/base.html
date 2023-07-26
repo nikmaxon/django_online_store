@@ -12,9 +12,8 @@
     <h5 class="my-0 mr-md-auto font-weight-normal">SkyStore</h5>
     <nav class="ms-5">
         <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:home' %}">Каталог</a>
+        <a class="p-2 btn btn-outline-primary" href="{% url 'materials:list' %}">Блог</a>
         <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:contacts' %}">Контакты</a>
-        <a class="p-2 btn btn-outline-primary" href="{% url 'materials:list' %}">Материалы</a>
-        <a class="p-2 btn btn-outline-primary" href="{% url 'materials:create' %}"> + Добавить материал</a>
     </nav>
 </div>
 
@@ -33,17 +32,15 @@
             <div class="col-6 col-md">
                 <h5>Категории</h5>
                 <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Рассылки</a></li>
-                    <li><a class="text-muted" href="#">Телеграм боты</a></li>
-                    <li><a class="text-muted" href="#">Полезные утилиты</a></li>
-                    <li><a class="text-muted" href="#">Веб-приложения</a></li>
-                    <li><a class="text-muted" href="#">Микросервисы</a></li>
+                    <li><a class="text-muted" href="{% url 'catalog:home' %}">Каталог</a></li>
+                    <li><a class="text-muted" href="{% url 'materials:list' %}">Блог</a></li>
                 </ul>
             </div>
             <div class="col-6 col-md">
                 <h5>Дополнительно</h5>
                 <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Мы пишем</a></li>
+                    <li><a class="text-muted" href="#">Добавить продукт</a></li>
+                    <li><a class="text-muted" href="{% url 'materials:create' %}">Добавить блог</a></li>
                 </ul>
             </div>
             <div class="col-6 col-md">
