@@ -1,10 +1,27 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
 
+from catalog.forms import ProductForm
 from catalog.models import Product
 
 
-# CBV
+class ProductCreateView(CreateView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy('catalog:home')
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy('catalog:home')
+
+
+class ProductDeleteView(DeleteView):
+    model = Product
+
+
 class ProductListView(ListView):
     model = Product
     template_name = 'catalog/home.html'
@@ -14,15 +31,6 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'catalog/card.html'
 
-
-# def product_card(request, pk):
-#     product_item = Product.objects.get(pk=pk)
-#
-#     context = {
-#         'object_list': Product.objects.filter(pk=pk),
-#         'title': f'Товар :{product_item.product_name}'
-#     }
-#     return render(request, 'catalog/card.html', context)
 
 def contacts(request):
     if request.method == 'POST' or request.method == 'GET':
