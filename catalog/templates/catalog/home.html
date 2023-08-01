@@ -30,7 +30,7 @@
                 </ul>
                 <a href="{% url 'catalog:product_card' object.pk %}" type="button" class="btn btn-lg btn-sm btn-outline-primary">Подробнее</a>
                 <a href="{% url 'catalog:update_product' object.pk %}" type="button" class="btn btn-lg btn-sm btn-outline-secondary">Изменить</a>
-                <a href="{% url 'catalog:update_product' object.pk %}" type="button" class="btn btn-lg btn-sm btn-outline-danger">Удалить</a>
+                <a href="{% url 'catalog:delete_product' object.pk %}" type="button" class="btn btn-lg btn-sm btn-outline-danger">Удалить</a>
             </div>
         </div>
     </div>

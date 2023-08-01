@@ -31,3 +31,10 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'товар'
         verbose_name_plural = 'товары'
+
+
+class Version(models.Model):
+    product = models.CharField(max_length=150)
+    version_number = models.CharField(max_length=150)
+    version_name = models.CharField(max_length=150)
+    version_sing = models.CharField(max_length=150)
