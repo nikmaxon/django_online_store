@@ -34,7 +34,14 @@ class Product(models.Model):
 
 
 class Version(models.Model):
-    product = models.CharField(max_length=150)
-    version_number = models.CharField(max_length=150)
-    version_name = models.CharField(max_length=150)
-    version_sing = models.CharField(max_length=150)
+    product = models.ForeignKey(Product, **NULLABLE, on_delete=models.CASCADE, verbose_name="продукт")
+    version_number = models.CharField(max_length=150, verbose_name='номер версии')
+    version_name = models.CharField(max_length=150, verbose_name='название версии')
+    version_sing = models.BooleanField(default=True, verbose_name='признак текущей версии')
+
+    def __str__(self):
+        return f'{self.product} {self.version_name}'
+
+    class Meta:
+        verbose_name = 'продукт'
+        verbose_name_plural = 'продукты'
