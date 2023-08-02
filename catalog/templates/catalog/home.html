@@ -23,17 +23,24 @@
                 <h4 class="my-0 font-weight-normal">{{object.product_name}}</h4>
             </div>
             <div class="card-body">
-                <h1 class="card-title pricing-card-title">$ {{object.price}}</h1>
+                <h1 class="card-title pricing-card-title"> Цена: $ {{object.price}}</h1>
                 <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                     <li>- Категория: {{object.category}}</li>
                     <li>- Дата изготовления: {{object.creation_date}}</li>
-                    <h2>Активная версия</h2>
-                    <li>- Название версии: {{ formset.version_name }}</li>
-                    <li>- Номер версии: {{ formset.version_number }}</li>
+                    {% for form in formset %}
+                        {% if form.product == object and form.version_sing == True %}
+                            <h2>Активная версия</h2>
+                            <li>- Название версии: {{ form.version_name }}</li>
+                            <li>- Номер версии: {{ form.version_number }}</li>
+                    {% endif %}
+                    {% endfor %}
                 </ul>
-                <a href="{% url 'catalog:product_card' object.pk %}" type="button" class="btn btn-lg btn-sm btn-outline-primary">Подробнее</a>
-                <a href="{% url 'catalog:update_product' object.pk %}" type="button" class="btn btn-lg btn-sm btn-outline-secondary">Изменить</a>
-                <a href="{% url 'catalog:delete_product' object.pk %}" type="button" class="btn btn-lg btn-sm btn-outline-danger">Удалить</a>
+                <a href="{% url 'catalog:product_card' object.pk %}" type="button"
+                   class="btn btn-lg btn-sm btn-outline-primary">Подробнее</a>
+                <a href="{% url 'catalog:update_product' object.pk %}" type="button"
+                   class="btn btn-lg btn-sm btn-outline-secondary">Изменить</a>
+                <a href="{% url 'catalog:delete_product' object.pk %}" type="button"
+                   class="btn btn-lg btn-sm btn-outline-danger">Удалить</a>
             </div>
         </div>
     </div>

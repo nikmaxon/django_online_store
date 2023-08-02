@@ -11,6 +11,16 @@ class ProductCreateView(CreateView):
     form_class = ProductForm
     success_url = reverse_lazy('catalog:home')
 
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        SubjectFormset = inlineformset_factory(Product, Version, form=VersionForm, extra=1)
+        if self.request.method == 'POST':
+            context_data['formset'] = SubjectFormset(self.request.POST, instance=self.object)
+        else:
+            context_data['formset'] = SubjectFormset(instance=self.object)
+
+        return context_data
+
 
 class ProductUpdateView(UpdateView):
     model = Product
@@ -48,7 +58,10 @@ class ProductListView(ListView):
     template_name = 'catalog/home.html'
 
     def get_context_data(self, **kwargs):
-        pass
+        context_data = super().get_context_data()
+        version_list = Version.objects.all()
+        context_data['formset'] = version_list
+        return context_data
 
 class ProductDetailView(DetailView):
     model = Product
