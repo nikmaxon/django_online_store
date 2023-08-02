@@ -15,7 +15,7 @@
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button type="submit" class="btn btn-success">Сохранить</button>
-
+                    <a href="{% url 'catalog:home' %}" class="btn btn-warning">Назад</a>
                 </div>
                 <div class="card-footer"></div>
             </div>
@@ -31,6 +31,9 @@
                     {{ formset.management_form }}
                     {% for form in formset.forms %}
                         {{ form.as_p }}
+                        {% if not forloop.last %}
+                            <hr>
+                        {% endif %}
                     {% endfor %}
                 </div>
                 <div class="card-footer"></div>

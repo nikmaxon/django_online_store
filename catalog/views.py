@@ -47,6 +47,8 @@ class ProductListView(ListView):
     model = Product
     template_name = 'catalog/home.html'
 
+    def get_context_data(self, **kwargs):
+        pass
 
 class ProductDetailView(DetailView):
     model = Product

@@ -27,6 +27,9 @@
                 <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                     <li>- Категория: {{object.category}}</li>
                     <li>- Дата изготовления: {{object.creation_date}}</li>
+                    <h2>Активная версия</h2>
+                    <li>- Название версии: {{ formset.version_name }}</li>
+                    <li>- Номер версии: {{ formset.version_number }}</li>
                 </ul>
                 <a href="{% url 'catalog:product_card' object.pk %}" type="button" class="btn btn-lg btn-sm btn-outline-primary">Подробнее</a>
                 <a href="{% url 'catalog:update_product' object.pk %}" type="button" class="btn btn-lg btn-sm btn-outline-secondary">Изменить</a>
