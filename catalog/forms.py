@@ -8,6 +8,16 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = '__all__'
 
+    def clean_product_name(self):
+        cleaned_data = self.cleaned_data['product_name']
+        cleaned_list = cleaned_data.replace('.', '').split()
+
+        forbidden_words = ('казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар')
+        for word in cleaned_list:
+            if word in forbidden_words:
+                raise forms.ValidationError('Недопустимые слова/символы')
+        return cleaned_data
+
 
 class VersionForm(forms.ModelForm):
     class Meta:
