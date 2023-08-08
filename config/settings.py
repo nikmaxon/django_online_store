@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'catalog',
     'materials',
+    'users',
 ]
 
 MIDDLEWARE = [
