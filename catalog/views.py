@@ -63,6 +63,7 @@ class ProductListView(ListView):
         context_data['formset'] = version_list
         return context_data
 
+
 class ProductDetailView(DetailView):
     model = Product
     template_name = 'catalog/card.html'
