@@ -1,6 +1,6 @@
 from django import forms
-
 from catalog.models import Product, Version
+from django.shortcuts import redirect
 
 
 class StyleFormMixin:
@@ -13,7 +13,7 @@ class StyleFormMixin:
 class ProductForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Product
-        fields = '__all__'
+        exclude = ('owner',)
 
     def clean_product_name(self):
         cleaned_data = self.cleaned_data['product_name']

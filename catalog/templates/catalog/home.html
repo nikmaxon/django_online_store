@@ -6,6 +6,8 @@
     <p class="lead">Skystore - это отличный вариант хранения ваших плагинов и примеров кода, который вы бы хотели
         продать</p>
 </div>
+
+
 <div class="col-md-12 text-center">
     <a class="btn btn-btn btn-primary" href="{% url 'catalog:create_product' %}">
         Добавить позицию
@@ -27,11 +29,12 @@
                 <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                     <li>- Категория: {{object.category}}</li>
                     <li>- Дата изготовления: {{object.creation_date}}</li>
+                    <li>- Создатель: {{object.owner|default:"Без владельца"}}</li>
                     {% for form in formset %}
-                        {% if form.product == object and form.version_sing == True %}
-                            <h2>Активная версия</h2>
-                            <li>- Название версии: {{ form.version_name }}</li>
-                            <li>- Номер версии: {{ form.version_number }}</li>
+                    {% if form.product == object and form.version_sing == True %}
+                    <h2>Активная версия</h2>
+                    <li>- Название версии: {{ form.version_name }}</li>
+                    <li>- Номер версии: {{ form.version_number }}</li>
                     {% endif %}
                     {% endfor %}
                 </ul>
