@@ -1,0 +1,10 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+
+{% block content %}
+    <div class="col-md-9">
+{% csrf_token %}
+<h1>Активация успешна</h1>
+    <p>Ваш аккаунт успешно активирован. Теперь вы можете войти на сайт.</p>
+    </div>
+{% endblock %}
