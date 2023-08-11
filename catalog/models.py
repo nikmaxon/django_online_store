@@ -27,6 +27,7 @@ class Product(models.Model):
     last_change_date = models.DateField(auto_now=True, verbose_name='дата последнего изменения')
 
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Владелец')
+    is_published = models.BooleanField(default=False, verbose_name='Опубликовано')
 
     def __str__(self):
         return f'{self.product_name} ({self.category}): {self.price}'
@@ -34,6 +35,21 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'товар'
         verbose_name_plural = 'товары'
+
+        permissions = [
+            (
+                'set_published',
+                'Can publish posts'
+            ),
+            (
+                'set_category',
+                'Can change category'
+            ),
+            (
+                'set_description',
+                'Can change description'
+            ),
+        ]
 
 
 class Version(models.Model):

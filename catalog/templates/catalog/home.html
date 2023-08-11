@@ -9,9 +9,11 @@
 
 
 <div class="col-md-12 text-center">
+    {% if perms.catalog.add_product %}
     <a class="btn btn-btn btn-primary" href="{% url 'catalog:create_product' %}">
         Добавить позицию
     </a>
+    {% endif %}
 </div>
 
 <div class="container">
@@ -40,10 +42,14 @@
                 </ul>
                 <a href="{% url 'catalog:product_card' object.pk %}" type="button"
                    class="btn btn-lg btn-sm btn-outline-primary">Подробнее</a>
+                {% if perms.catalog.change_product %}
                 <a href="{% url 'catalog:update_product' object.pk %}" type="button"
                    class="btn btn-lg btn-sm btn-outline-secondary">Изменить</a>
+                {% endif %}
+                {% if perms.catalog.delete_product %}
                 <a href="{% url 'catalog:delete_product' object.pk %}" type="button"
                    class="btn btn-lg btn-sm btn-outline-danger">Удалить</a>
+                {% endif %}
             </div>
         </div>
     </div>
