@@ -88,6 +88,16 @@ class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
     template_name = 'catalog/card.html'
 
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        SubjectFormset = inlineformset_factory(Product, Version, form=VersionForm, extra=1)
+        if self.request.method == 'POST':
+            context_data['formset'] = SubjectFormset(self.request.POST, instance=self.object)
+        else:
+            context_data['formset'] = SubjectFormset(instance=self.object)
+
+        return context_data
+
 
 @login_required()
 def contacts(request):
