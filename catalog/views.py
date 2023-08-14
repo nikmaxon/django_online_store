@@ -9,13 +9,18 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
 from catalog.forms import ProductForm, VersionForm, StyleFormMixin, CategoryForm
 from catalog.models import Product, Version, Category
-from catalog.services import get_cached_versons_for_product
+from catalog.services import get_cached_versons_for_product, get_category_list
 
 
 class CategoryListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     permission_required = 'catalog.view_category'
     model = Category
     template_name = 'catalog/categories.html'
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['object_list'] = get_category_list()
+        return context_data
 
 
 class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
