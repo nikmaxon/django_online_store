@@ -30,7 +30,7 @@ class Product(models.Model):
     is_published = models.BooleanField(default=False, verbose_name='Опубликовано')
 
     def __str__(self):
-        return f'{self.product_name} ({self.category}): {self.price}'
+        return f'Название: {self.product_name} (Категория:{self.category}): Цена:{self.price}'
 
     class Meta:
         verbose_name = 'товар'
@@ -59,7 +59,7 @@ class Version(models.Model):
     version_sing = models.BooleanField(default=False, verbose_name='признак текущей версии')
 
     def __str__(self):
-        return f'{self.product} {self.version_name}'
+        return f'{self.product} Версия:{self.version_name}'
 
     class Meta:
         verbose_name = 'продукт'
