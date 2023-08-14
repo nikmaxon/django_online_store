@@ -7,8 +7,15 @@ from django.http import Http404
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
-from catalog.forms import ProductForm, VersionForm
-from catalog.models import Product, Version
+from catalog.forms import ProductForm, VersionForm, StyleFormMixin, CategoryForm
+from catalog.models import Product, Version, Category
+from catalog.services import get_cached_versons_for_product
+
+
+class CategoryListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    permission_required = 'catalog.view_category'
+    model = Category
+    template_name = 'catalog/categories.html'
 
 
 class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -35,7 +42,7 @@ class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
         return context_data
 
 
-class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+class ProductUpdateView(StyleFormMixin, LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
     permission_required = 'catalog.change_product'
@@ -92,16 +99,7 @@ class ProductDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
-        if settings.CACHE_ENABLED:
-            key = f'version_list_{self.object.pk}'
-            version_list = cache.get(key)
-            if version_list is None:
-                version_list = self.object.version_set.all()
-                cache.set(key, version_list)
-        else:
-            version_list = self.object.version_set.all()
-
-        context_data['versions'] = version_list
+        context_data['versions'] = get_cached_versons_for_product(self.object.pk)
         return context_data
 
 

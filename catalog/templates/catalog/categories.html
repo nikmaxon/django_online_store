@@ -1,0 +1,39 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Категории</h1>
+</div>
+<div class="container">
+    {% for object in object_list %}
+    <div class="col-3">
+        <div class="card mb-4 box-shadow">
+            <img class="card-img-top"
+                 src="{{ object.preview_img|mymedia }}"
+                 alt="Card image cap">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">{{object.name}}</h4>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                    <li>- Описание: {{object.description}}</li>
+                </ul>
+                <a href="#" type="button"
+                   class="btn btn-lg btn-sm btn-outline-primary">Подробнее</a>
+                {% if perms.catalog.change_product %}
+                <a href="#" type="button"
+                   class="btn btn-lg btn-sm btn-outline-secondary">Изменить</a>
+                {% endif %}
+                {% if perms.catalog.delete_product %}
+                <a href="#" type="button"
+                   class="btn btn-lg btn-sm btn-outline-danger">Удалить</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+
+
